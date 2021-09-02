@@ -2,6 +2,7 @@ package com.example.covid_19tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.pie_chart);
 
         countryModelList = new ArrayList<>();
+
+        textViewCountryName.setOnClickListener(v ->
+            startActivity(new Intent(MainActivity.this , CountryListActivity.class))
+        );
 
         ApiUtilities.getApiInterface()
                 .getCountryData()

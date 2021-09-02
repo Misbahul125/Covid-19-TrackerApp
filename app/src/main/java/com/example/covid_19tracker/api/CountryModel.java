@@ -2,6 +2,8 @@ package com.example.covid_19tracker.api;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 public class CountryModel {
 
     @SerializedName("country")
@@ -34,7 +36,10 @@ public class CountryModel {
     @SerializedName("tests")
     private String tests;
 
-    public CountryModel(String country, String updated, String cases, String todayCases, String active, String recovered, String todayRecovered, String deaths, String todayDeaths, String tests) {
+    @SerializedName("countryInfo")
+    private Map<String , String> countryInfo;
+
+    public CountryModel(String country, String updated, String cases, String todayCases, String active, String recovered, String todayRecovered, String deaths, String todayDeaths, String tests, Map<String, String> countryInfo) {
         this.country = country;
         this.updated = updated;
         this.cases = cases;
@@ -45,6 +50,7 @@ public class CountryModel {
         this.deaths = deaths;
         this.todayDeaths = todayDeaths;
         this.tests = tests;
+        this.countryInfo = countryInfo;
     }
 
     public String getCountry() {
@@ -125,5 +131,13 @@ public class CountryModel {
 
     public void setTests(String tests) {
         this.tests = tests;
+    }
+
+    public Map<String, String> getCountryInfo() {
+        return countryInfo;
+    }
+
+    public void setCountryInfo(Map<String, String> countryInfo) {
+        this.countryInfo = countryInfo;
     }
 }

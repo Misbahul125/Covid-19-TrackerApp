@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_vertical"
+        >
+
+        <TextView
+            android:id="@+id/recycler_item_serial_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bold"
+            android:textSize="@dimen/text_size_2"/>
+
+        <ImageView
+            android:id="@+id/recycler_item_country_flag"
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/recycler_item_serial_number"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/recycler_item_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/recycler_item_country_flag"
+            android:fontFamily="@font/regular"
+            android:text="India"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_2" />
+
+        <TextView
+            android:id="@+id/recycler_item_country_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="123456"
+            android:textColor="@color/black"
+            android:fontFamily="@font/regular"
+            android:textSize="@dimen/text_size_2"/>
+
+
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
