@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.covid_19tracker.api.ApiUtilities;
@@ -28,7 +30,8 @@ public class CountryListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private EditText editTextSearch;
-    private ImageButton imageButtonBack , imageButtonSearch;
+    private ImageView imageViewBack , imageViewSearch;
+    private ProgressDialog progressDialog;
     private ArrayList<CountryModel> countryModelList;
     private CountryAdapter countryAdapter;
 
@@ -37,9 +40,14 @@ public class CountryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_list);
 
-        imageButtonBack = findViewById(R.id.image_button_back);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading Data...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        imageViewBack = findViewById(R.id.image_view_back);
         editTextSearch = findViewById(R.id.edit_text_search);
-        imageButtonSearch = findViewById(R.id.image_button_search);
+        imageViewSearch = findViewById(R.id.image_view_search);
         recyclerView = findViewById(R.id.recycler_country_list);
 
         countryModelList = new ArrayList<>();
@@ -51,6 +59,8 @@ public class CountryListActivity extends AppCompatActivity {
                     public void onResponse(Call<List<CountryModel>> call, Response<List<CountryModel>> response) {
                         countryModelList.addAll(response.body());
 
+                        progressDialog.dismiss();
+
                         countryAdapter = new CountryAdapter(CountryListActivity.this , countryModelList);
 
                         recyclerView.setHasFixedSize(true);
@@ -61,7 +71,8 @@ public class CountryListActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<CountryModel>> call, Throwable t) {
-                        Log.d("ERROR" , t.getMessage());
+                        progressDialog.dismiss();
+                        //Log.d("ERROR" , t.getMessage());
                         Toast.makeText(CountryListActivity.this, "Error in fetching data. Please try again after sometime.",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -84,11 +95,12 @@ public class CountryListActivity extends AppCompatActivity {
             }
         });
 
-        imageButtonSearch.setOnClickListener(v ->
+        imageViewSearch.setOnClickListener(v ->
                 filterCountry(editTextSearch.getText().toString()));
 
-        imageButtonBack.setOnClickListener(v ->
-            super.onBackPressed());
+        imageViewBack.setOnClickListener(v ->{
+            finish();
+        });
     }
 
     private void filterCountry(String searchText) {

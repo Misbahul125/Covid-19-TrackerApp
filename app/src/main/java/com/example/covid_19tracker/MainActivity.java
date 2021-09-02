@@ -2,6 +2,7 @@ package com.example.covid_19tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,12 +36,22 @@ public class MainActivity extends AppCompatActivity {
     private int totalConfirmed , todayConfirmed , totalActive , totalRecovered , todayRecovered , totalDeath , todayDeath , totalTest;
 
     private PieChart pieChart;
+
+    private ProgressDialog progressDialog;
+
     private List<CountryModel> countryModelList;
+
+    private String countryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading Data...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         textViewCountryName = findViewById(R.id.country_name);
         textViewCountryLastUpdated = findViewById(R.id.last_updated);
@@ -68,11 +79,20 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body() != null) {
                             countryModelList.addAll(response.body());
 
+                            if((getIntent().getStringExtra("COUNTRY_NAME") != null) && (!getIntent().getStringExtra("COUNTRY_NAME").isEmpty())) {
+                                countryName = getIntent().getStringExtra("COUNTRY_NAME");
+                            }
+                            else {
+                                countryName = "India";
+                            }
+
+                            progressDialog.dismiss();
+
                             for (int i = 0 ; i<countryModelList.size() ; i++) {
 
-                                if (countryModelList.get(i).getCountry().equals("India")) {
+                                if (countryModelList.get(i).getCountry().equals(countryName)) {
 
-                                    textViewCountryName.setText(countryModelList.get(i).getCountry());
+                                    textViewCountryName.setText(countryName);
 
                                     lastUpdated = Long.parseLong(countryModelList.get(i).getUpdated());
                                     totalConfirmed = Integer.parseInt(countryModelList.get(i).getCases());
@@ -112,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<CountryModel>> call, Throwable t) {
+                        progressDialog.dismiss();
                         Log.d("ERROR" , t.getMessage());
                         Toast.makeText(MainActivity.this, "Error in fetching data. Please try again after sometime.",
                                 Toast.LENGTH_LONG).show();

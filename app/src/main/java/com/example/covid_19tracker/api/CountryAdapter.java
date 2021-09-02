@@ -1,6 +1,7 @@
 package com.example.covid_19tracker.api;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.covid_19tracker.MainActivity;
 import com.example.covid_19tracker.R;
 
 import java.text.NumberFormat;
@@ -47,6 +49,12 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         holder.recyclerTextViewCountryName.setText(countryModel.getCountry());
 
         holder.recyclerTextViewCountryCases.setText(NumberFormat.getInstance().format(Integer.parseInt(countryModel.getCases())));
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context , MainActivity.class);
+            intent.putExtra("COUNTRY_NAME" , countryModel.getCountry());
+            context.startActivity(intent);
+        });
     }
 
     @Override
