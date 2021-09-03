@@ -1,4 +1,4 @@
-package com.example.covid_19tracker.api;
+package com.example.covid_19tracker;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,12 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.covid_19tracker.MainActivity;
-import com.example.covid_19tracker.R;
+import com.example.covid_19tracker.api.CountryModel;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {

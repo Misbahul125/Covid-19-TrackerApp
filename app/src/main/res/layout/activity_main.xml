@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="320dp"
         android:paddingBottom="5dp"
         android:background="@color/color_primary">
 
@@ -38,8 +38,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:clickable="true"
                 android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_25"
                 android:drawablePadding="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@string/regular"
                 android:text="India"
                 android:textColor="@color/white"
@@ -215,314 +218,352 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <GridLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:paddingHorizontal="10dp"
-            android:layout_marginBottom="30dp"
-            android:columnCount="2"
-            android:nestedScrollingEnabled="false">
+            android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/card_width_1"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:layout_columnWeight="1"
-                app:strokeColor="@color/color_primary"
-                app:strokeWidth="1dp">
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="10dp"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="18dp"
-                    android:orientation="vertical">
+                <Button
+                    android:id="@+id/button_see_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/search_background"
+                    android:drawableEnd="@drawable/ic_baseline_unfold_more_25"
+                    android:text="SEE MORE"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/button_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/search_background"
+                    android:layout_gravity="end"
+                    android:text="REFRESH"
+                    android:textSize="16sp"
+                    android:drawableEnd="@drawable/ic_baseline_refresh_25"/>
+
+            </RelativeLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="10dp"
+                android:layout_marginBottom="30dp"
+                android:columnCount="2"
+                android:nestedScrollingEnabled="false">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/card_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/color_primary"
+                    app:strokeWidth="1dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="18dp"
+                        android:orientation="vertical">
 
-                        <View
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@color/yellow" />
-
-                        <TextView
+                        <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@color/yellow" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@string/regular"
+                                android:text="Confirmed"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_1" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/total_confirmed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@string/bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/title_size_1" />
+
+                        <TextView
+                            android:id="@+id/today_confirmed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
                             android:fontFamily="@string/regular"
-                            android:text="Confirmed"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_1" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/total_confirmed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/title_size_1" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/today_confirmed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/regular"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_1" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/card_width_1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:layout_columnWeight="1"
-                app:strokeColor="@color/color_primary"
-                app:strokeWidth="1dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="18dp"
-                    android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/card_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/color_primary"
+                    app:strokeWidth="1dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="18dp"
+                        android:orientation="vertical">
 
-                        <View
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@color/blue_pie" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@color/blue_pie" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@string/regular"
+                                android:text="Active"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_1" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/total_active"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@string/bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/title_size_1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="7dp"
                             android:fontFamily="@string/regular"
-                            android:text="Active"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_1" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/total_active"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/title_size_1" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/regular"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_1" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/card_width_1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:layout_columnWeight="1"
-                app:strokeColor="@color/color_primary"
-                app:strokeWidth="1dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="18dp"
-                    android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/card_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/color_primary"
+                    app:strokeWidth="1dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="18dp"
+                        android:orientation="vertical">
 
-                        <View
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@color/green_pie" />
-
-                        <TextView
+                        <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@color/green_pie" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@string/regular"
+                                android:text="Recovered"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_1" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/total_recovered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@string/bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/title_size_1" />
+
+                        <TextView
+                            android:id="@+id/today_recovered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
                             android:fontFamily="@string/regular"
-                            android:text="Recovered"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_1" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/total_recovered"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/title_size_1" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/today_recovered"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/regular"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_1" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/card_width_1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:layout_columnWeight="1"
-                app:strokeColor="@color/color_primary"
-                app:strokeWidth="1dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="18dp"
-                    android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/card_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/color_primary"
+                    app:strokeWidth="1dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="18dp"
+                        android:orientation="vertical">
 
-                        <View
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@color/red_pie" />
-
-                        <TextView
+                        <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@color/red_pie" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@string/regular"
+                                android:text="Deaths"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_1" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/total_death"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@string/bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/title_size_1" />
+
+                        <TextView
+                            android:id="@+id/today_death"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
                             android:fontFamily="@string/regular"
-                            android:text="Deaths"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_1" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/total_death"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/title_size_1" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/today_death"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/regular"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_1" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="@dimen/card_width_1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="10dp"
-                android:layout_gravity="center"
-                android:layout_columnWeight="1"
-                app:strokeColor="@color/color_primary"
-                app:strokeWidth="1dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="18dp"
-                    android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/card_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/color_primary"
+                    app:strokeWidth="1dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="18dp"
+                        android:orientation="vertical">
 
-                        <View
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@color/pink" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@color/pink" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@string/regular"
+                                android:text="Tests"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_1" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <TextView
+                            android:id="@+id/total_tests"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@string/bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/title_size_1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="7dp"
                             android:fontFamily="@string/regular"
-                            android:text="Tests"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_1" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/total_tests"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/title_size_1" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@string/regular"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_1" />
+            </GridLayout>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </com.google.android.material.card.MaterialCardView>
-
-        </GridLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>
 

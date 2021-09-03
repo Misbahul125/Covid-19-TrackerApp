@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
+    private Button buttonSeeMore , buttonRefresh;
+
     private List<CountryModel> countryModelList;
 
     private String countryName;
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         textViewTodayDeath = findViewById(R.id.today_death);
         textViewTotalTest = findViewById(R.id.total_tests);
         pieChart = findViewById(R.id.pie_chart);
+        buttonSeeMore = findViewById(R.id.button_see_more);
+        buttonRefresh = findViewById(R.id.button_refresh);
 
         countryModelList = new ArrayList<>();
 
@@ -71,6 +76,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this , CountryListActivity.class))
         );
 
+        buttonSeeMore.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this , CountryListActivity.class));
+        });
+
+        buttonRefresh.setOnClickListener(v -> {
+            progressDialog.show();
+            loadCountryData();
+        });
+
+        loadCountryData();
+
+    }
+
+    private void loadCountryData() {
         ApiUtilities.getApiInterface()
                 .getCountryData()
                 .enqueue(new Callback<List<CountryModel>>() {
@@ -138,6 +157,5 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
 }
